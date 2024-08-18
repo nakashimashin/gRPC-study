@@ -12,7 +12,7 @@ RUN go mod download
 RUN go install github.com/air-verse/air@latest
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-
+RUN go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 
 COPY . .
 
