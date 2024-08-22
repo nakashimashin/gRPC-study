@@ -11,7 +11,9 @@ package myapp;
 // サービスの定義
 service GreetingService {
 	// サービスが持つメソッドの定義
-	rpc Hello (HelloRequest) returns (HelloResponse); 
+	rpc Hello (HelloRequest) returns (HelloResponse);
+	// サーバーストリーミングRPC
+	rpc HelloServerStream (HelloRequest) returns (stream HelloResponse);
 }
 
 // 型の定義
