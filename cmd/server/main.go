@@ -84,3 +84,21 @@ func (s *myServer) HelloClientStream(stream hellopb.GreetingService_HelloClientS
 		nameList = append(nameList, req.GetName())
 	}
 }
+
+func (s *myServer) HelloBiStream(stream hellopb.GreetingService_HelloBiStreamServer) error {
+	for {
+		req, err := stream.Recv()
+		if errors.Is(err, io.EOF) {
+			return nil
+		}
+		if err != nil {
+			return err
+		}
+		message := fmt.Sprintf("Hello, %v!", req.GetName())
+		if err := stream.Send(&hellopb.HelloResponse{
+			Message: message,
+		}); err != nil {
+			return err
+		}
+	}
+}
